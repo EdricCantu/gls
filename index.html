@@ -3,11 +3,14 @@
   
 </head><body>
   Choose your glossary source
+  <br>
   A .gls file: <input type="file" accept=".gls">
+  <br>
   A gls formatted file online <input type="url">
+  <br>
   copy and paste <input type="text">
 </body></html><script>
-  document.querySelector('[type="text"]').addEventListener("paste",console.log);
-  document.querySelector('[type="url"]').addEventListener("blur",console.log);
-  document.querySelector('[type="file"]').addEventListener("input",console.log);
+  document.querySelector('[type="text"]').addEventListener("input",(x)=>console.log(x));
+  document.querySelector('[type="url"]').addEventListener("blur",(x)=>console.log(x.target.value));
+  document.querySelector('[type="file"]').addEventListener("input",(x)=>console.log(x.target.files[0]);
 </script>
