@@ -7,12 +7,33 @@
   <li>A gls formatted file online <input type="url"></li>
   <li>copy and paste <input type="text"></li>
 </body></html><script>
-  y
+  function UnsafeError(message){
+    this.name = "UnsafeError";
+    this.message = `message;
+  }
+  NotImplementedError.prototype = Error.prototype;
   document.querySelector('[type="text"]').addEventListener("input",(x)=>{if(x.inputType=="insertfrompaste"){go(x.data)}});
   document.querySelector('[type="url"]').addEventListener("blur",async (x)=>go(await ((await fetch(x.target.value).text))));
   document.querySelector('[type="file"]').addEventListener("input",(x)=>go(await (x.target.files[0].text)));
-  function go(x){
+  function go(gls, unsafe = ""){
     //parse gls
-    console.log(x)
+    console.log(gls);
+    gls = gls.split("\n");
+    result = {};
+    cur = "";
+    unsafe = (unsafe=="unsafe");
+    for(const lineNum in gls){
+      const line = gls[lineNum];
+      var l = line;
+      if(lineMod.trim() == ""){ cur = ""; continue }//nothing in the line, ignore and interpret as end of entry
+      if(cur == ""){//line is not empty (otherwise would be skipped by above line) and follows an empty line. likely a new index
+        if(cur[0] == " " && !unsafe){
+          throw UnsafeError(`Inappropriate indentation at line ${lineNum}. \nIf this is the beginning of an entry, \ntry removing the initial spaces so that the line \nbegins on a non-space character. \nTo bypass this, pass a second argument with a string value ,"unsafe", \nThis could lead to untraceable errors in the future.`);
+        }else{//assume 
+          
+        }
+        
+      }
+    }
   }
 </script>
