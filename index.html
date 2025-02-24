@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html><head>
+  
+</head><body>
+  Choose your glossary source
+  A .gls file: <input type="file" accept=".gls">
+  A gls formatted file online <input type="url">
+  copy and paste <input type="text">
+</body></html><script>
+  document.querySelector('[type="text"]').addEventListener("paste",console.log);
+  document.querySelector('[type="url"]').addEventListener("blur",console.log);
+  document.querySelector('[type="file"]').addEventListener("input",console.log);
+</script>
