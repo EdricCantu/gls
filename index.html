@@ -4,13 +4,18 @@
 </head><body>
   Choose your glossary source
   <br>
-  A .gls file: <input type="file" accept=".gls">
+  A .gls file or .gls formatted file: <input type="file" accept=".gls">
   <br>
   A gls formatted file online <input type="url">
   <br>
   copy and paste <input type="text">
 </body></html><script>
-  document.querySelector('[type="text"]').addEventListener("input",(x)=>console.log(x));
-  document.querySelector('[type="url"]').addEventListener("blur",(x)=>console.log(x.target.value));
-  document.querySelector('[type="file"]').addEventListener("input",(x)=>console.log(x.target.files[0]));
+  y
+  document.querySelector('[type="text"]').addEventListener("input",(x)=>{if(x.inputType=="insertfrompaste"){go(x.data)}});
+  document.querySelector('[type="url"]').addEventListener("blur",async (x)=>go(await ((await fetch(x.target.value).text))));
+  document.querySelector('[type="file"]').addEventListener("input",(x)=>go(await (x.target.files[0].text)));
+  function go(x){
+    //parse gls
+    console.log(x)
+  }
 </script>
